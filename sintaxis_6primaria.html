@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sintaxis — 6º de Primaria</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.7.0/dist/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#f9f8f5; --surface:#fff; --surface2:#f1efea;
+    --border:rgba(0,0,0,0.1); --border2:rgba(0,0,0,0.18);
+    --text:#1a1a18; --text2:#5a5955; --text3:#999891;
+    --radius-md:8px; --radius-lg:12px;
+    --purple:#534AB7; --purple-light:#EEEDFE; --purple-dark:#3C3489;
+    --teal:#0F6E56; --teal-light:#E1F5EE; --teal-dark:#085041;
+    --amber:#BA7517; --amber-light:#FAEEDA; --amber-dark:#633806;
+    --coral:#D85A30; --coral-light:#FAECE7;
+    --green:#639922; --green-light:#EAF3DE; --green-dark:#27500A;
+    --red:#E24B4A; --red-light:#FCEBEB; --red-dark:#791F1F;
+  }
+  body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; min-height:100vh; }
+  header { background:var(--surface); border-bottom:0.5px solid var(--border); padding:1rem 1.5rem; display:flex; align-items:center; gap:12px; }
+  header .icon-box { width:40px; height:40px; border-radius:var(--radius-md); background:var(--purple-light); display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--purple-dark); }
+  header h1 { font-size:18px; font-weight:500; }
+  header span { font-size:13px; color:var(--text2); }
+  .container { max-width:860px; margin:0 auto; padding:1.5rem; }
+  .tabs-nav { display:flex; gap:4px; border-bottom:0.5px solid var(--border); margin-bottom:1.5rem; flex-wrap:wrap; }
+  .tab-btn { padding:8px 14px; font-size:13px; font-weight:500; border:none; background:transparent; color:var(--text2); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-0.5px; border-radius:4px 4px 0 0; transition:all .15s; font-family:inherit; }
+  .tab-btn:hover { color:var(--text); background:var(--surface2); }
+  .tab-btn.active { color:var(--text); border-bottom-color:var(--purple); }
+  .tab-icon { font-size:15px; vertical-align:-2px; margin-right:5px; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  /* TEORIA */
+  .theory-section { margin-bottom:1.5rem; }
+  .theory-title { font-size:14px; font-weight:500; margin-bottom:8px; padding:6px 12px; border-radius:var(--radius-md); display:inline-flex; align-items:center; gap:6px; }
+  .theory-title.suj { background:var(--purple-light); color:var(--purple-dark); }
+  .theory-title.pred { background:var(--teal-light); color:var(--teal-dark); }
+  .theory-title.comp { background:var(--amber-light); color:var(--amber-dark); }
+  .theory-card { background:var(--surface); border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:1rem 1.25rem; margin-bottom:12px; }
+  .theory-card p { font-size:14px; color:var(--text2); line-height:1.7; margin-bottom:8px; }
+  .theory-card p:last-child { margin-bottom:0; }
+  .theory-card strong { color:var(--text); }
+  .example-box { background:var(--surface2); border-radius:var(--radius-md); padding:8px 12px; font-size:14px; line-height:1.9; margin-top:8px; }
+  .tag { display:inline-block; border-radius:4px; padding:1px 6px; font-size:13px; font-weight:500; margin:0 1px; }
+  .tag.suj { background:var(--purple-light); color:var(--purple-dark); }
+  .tag.pred { background:var(--teal-light); color:var(--teal-dark); }
+  .tag.ns { background:var(--purple); color:#fff; }
+  .tag.nv { background:var(--teal); color:#fff; }
+  .tag.cd { background:var(--coral); color:#fff; }
+  .tag.ci { background:var(--amber); color:#fff; }
+  .tag.cc { background:var(--green); color:#fff; }
+  .tip-card { border-left:3px solid var(--purple); padding:1rem 1.25rem; background:var(--surface); border-radius:0 var(--radius-lg) var(--radius-lg) 0; border-top:0.5px solid var(--border); border-right:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
+  .tip-card p { font-size:14px; color:var(--text2); line-height:1.8; }
+  .tip-card .tip-title { font-size:13px; font-weight:500; color:var(--text); margin-bottom:6px; }
+
+  /* EJERCICIOS */
+  .score-label { font-size:13px; color:var(--text2); margin-bottom:6px; }
+  .progress-bar { height:6px; background:var(--surface2); border-radius:3px; margin-bottom:1.2rem; }
+  .progress-fill { height:100%; background:var(--purple); border-radius:3px; transition:width .4s; }
+  .exercise-card { background:var(--surface); border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:1.25rem; margin-bottom:1rem; }
+  .exercise-hint { font-size:13px; color:var(--text2); margin-bottom:10px; }
+  .exercise-sentence { font-size:16px; font-weight:500; margin-bottom:12px; line-height:1.8; }
+  .word-btn { display:inline-block; margin:3px; padding:6px 12px; border:1.5px solid var(--border2); border-radius:20px; background:var(--surface); color:var(--text); font-size:14px; cursor:pointer; transition:all .15s; font-family:inherit; }
+  .word-btn:hover { background:var(--surface2); }
+  .word-btn.suj { background:var(--purple-light); border-color:var(--purple); color:var(--purple-dark); }
+  .word-btn.pred { background:var(--teal-light); border-color:var(--teal); color:var(--teal-dark); }
+  .word-btn.ns { background:var(--purple); border-color:var(--purple-dark); color:#fff; }
+  .word-btn.nv { background:var(--teal); border-color:var(--teal-dark); color:#fff; }
+  .select-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+  .func-select { font-size:13px; padding:5px 8px; border:0.5px solid var(--border2); border-radius:var(--radius-md); background:var(--surface); color:var(--text); font-family:inherit; }
+  .btn-group { display:flex; gap:8px; margin-top:1rem; flex-wrap:wrap; }
+  .btn-primary { padding:7px 18px; background:var(--purple); color:#fff; border:none; border-radius:var(--radius-md); font-size:14px; font-weight:500; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:5px; }
+  .btn-primary:hover { opacity:.85; }
+  .btn-secondary { padding:7px 16px; background:var(--surface); color:var(--text); border:0.5px solid var(--border2); border-radius:var(--radius-md); font-size:14px; font-weight:500; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:5px; }
+  .btn-secondary:hover { background:var(--surface2); }
+  .feedback { font-size:13px; margin-top:10px; padding:10px 14px; border-radius:var(--radius-md); display:none; align-items:center; gap:8px; }
+
+  /* NUC MODE BUTTONS */
+  .nuc-mode-btn { padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; font-family:inherit; font-weight:500; transition:all .15s; border:1.5px solid; }
+  .nuc-mode-btn.ns { border-color:var(--purple); background:var(--purple-light); color:var(--purple-dark); }
+  .nuc-mode-btn.nv { border-color:var(--teal); background:var(--teal-light); color:var(--teal-dark); }
+  .nuc-mode-btn.ns.activo { background:var(--purple); color:#fff; }
+  .nuc-mode-btn.nv.activo { background:var(--teal); color:#fff; }
+
+  /* COMP */
+  .comp-group { display:flex; align-items:center; gap:8px; background:var(--surface2); padding:6px 10px; border-radius:var(--radius-md); margin-bottom:7px; }
+  .comp-label { font-size:14px; flex:1; }
+
+  /* SEMAFORO */
+  .semaforo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:1.5rem; }
+  @media(max-width:600px){ .semaforo-grid { grid-template-columns:1fr; } }
+  .semaforo-lane { border-radius:var(--radius-lg); border:0.5px solid var(--border); padding:12px; min-height:200px; background:var(--surface); }
+  .semaforo-lane.verde { border-top:4px solid var(--green); }
+  .semaforo-lane.amarillo { border-top:4px solid var(--amber); }
+  .semaforo-lane.rojo { border-top:4px solid var(--red); }
+  .semaforo-header { font-size:13px; font-weight:500; margin-bottom:2px; display:flex; align-items:center; gap:5px; }
+  .semaforo-sub { font-size:11px; color:var(--text2); margin-bottom:10px; }
+  .semaforo-header.verde { color:var(--green-dark); }
+  .semaforo-header.amarillo { color:var(--amber-dark); }
+  .semaforo-header.rojo { color:var(--red-dark); }
+  .semaforo-item { font-size:12px; padding:5px 8px; border-radius:var(--radius-md); margin-bottom:5px; cursor:grab; display:flex; align-items:center; gap:6px; background:var(--surface2); color:var(--text); border:0.5px solid var(--border); user-select:none; }
+  .semaforo-empty { font-size:12px; color:var(--text3); font-style:italic; text-align:center; margin-top:20px; }
+  .chips-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1rem; align-items:center; }
+  .concept-chip { padding:5px 10px; border:1.5px dashed var(--border2); border-radius:20px; font-size:12px; cursor:pointer; background:transparent; color:var(--text2); font-family:inherit; transition:all .15s; }
+  .concept-chip:hover { background:var(--surface2); color:var(--text); }
+  .semaforo-tip { padding:10px 14px; background:var(--surface2); border-radius:var(--radius-lg); font-size:13px; color:var(--text2); display:flex; align-items:center; gap:8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="icon-box"><i class="ti ti-book-2" aria-hidden="true"></i></div>
+  <div>
+    <h1>Sintaxis — 6º de Primaria</h1>
+    <span>Sujeto · Predicado · Núcleos · Complementos</span>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('teoria')"><i class="ti ti-book-2 tab-icon" aria-hidden="true"></i>Teoría</button>
+    <button class="tab-btn" onclick="switchTab('sujpred')"><i class="ti ti-scissors tab-icon" aria-hidden="true"></i>Sujeto y predicado</button>
+    <button class="tab-btn" onclick="switchTab('nucleos')"><i class="ti ti-crosshair tab-icon" aria-hidden="true"></i>Núcleos</button>
+    <button class="tab-btn" onclick="switchTab('complementos')"><i class="ti ti-puzzle tab-icon" aria-hidden="true"></i>Complementos</button>
+    <button class="tab-btn" onclick="switchTab('semaforo')"><i class="ti ti-traffic-cone tab-icon" aria-hidden="true"></i>Semáforo</button>
+  </nav>
+
+  <!-- TEORIA -->
+  <div class="tab-panel active" id="tab-teoria">
+    <div class="theory-section">
+      <div class="theory-title suj"><i class="ti ti-users" aria-hidden="true"></i> El sujeto</div>
+      <div class="theory-card">
+        <p>El <strong>sujeto</strong> es la persona, animal o cosa de la que habla el verbo. Responde a la pregunta: <em>¿Quién hace la acción?</em></p>
+        <p>El <strong>núcleo del sujeto (NS)</strong> es el sustantivo o pronombre más importante del sujeto.</p>
+        <div class="example-box"><span class="tag suj">Los niños alegres</span> jugaban en el parque.<br>→ NS: <span class="tag ns">niños</span></div>
+      </div>
+    </div>
+    <div class="theory-section">
+      <div class="theory-title pred"><i class="ti ti-run" aria-hidden="true"></i> El predicado</div>
+      <div class="theory-card">
+        <p>El <strong>predicado</strong> dice lo que hace o le pasa al sujeto. Contiene siempre un verbo.</p>
+        <p>El <strong>núcleo del predicado (NV)</strong> es el verbo principal.</p>
+        <div class="example-box">Los niños alegres <span class="tag pred">jugaban en el parque felizmente</span>.<br>→ NV: <span class="tag nv">jugaban</span></div>
+      </div>
+    </div>
+    <div class="theory-section">
+      <div class="theory-title comp"><i class="ti ti-puzzle" aria-hidden="true"></i> Los complementos</div>
+      <div class="theory-card">
+        <p><span class="tag cd">CD</span> <strong>Complemento directo:</strong> recibe la acción del verbo. Se sustituye por <em>lo, la, los, las</em>.</p>
+        <div class="example-box">María compró <span class="tag cd">un libro</span>. → <em>lo</em> compró ✓</div>
+        <p style="margin-top:10px"><span class="tag ci">CI</span> <strong>Complemento indirecto:</strong> indica a quién va destinada la acción. Se sustituye por <em>le, les</em>.</p>
+        <div class="example-box">Regalé flores <span class="tag ci">a mi madre</span>. → <em>le</em> regalé ✓</div>
+        <p style="margin-top:10px"><span class="tag cc">CC</span> <strong>Complemento circunstancial:</strong> indica lugar, tiempo, modo, causa… ¿Dónde? ¿Cuándo? ¿Cómo?</p>
+        <div class="example-box">Comemos <span class="tag cc">en el jardín</span> <span class="tag cc">todos los días</span>.</div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <p class="tip-title"><i class="ti ti-bulb" aria-hidden="true" style="vertical-align:-2px;margin-right:5px;"></i>Truco rápido para los complementos</p>
+      <p>Sustituye por <strong>lo/la</strong> → CD &nbsp;·&nbsp; Sustituye por <strong>le/les</strong> → CI &nbsp;·&nbsp; Pregunta <strong>¿dónde/cuándo/cómo?</strong> → CC</p>
+    </div>
+  </div>
+
+  <!-- SUJETO Y PREDICADO -->
+  <div class="tab-panel" id="tab-sujpred">
+    <div class="score-label" id="sp-score">Ejercicio 1 de 10</div>
+    <div class="progress-bar"><div class="progress-fill" id="sp-bar" style="width:0%"></div></div>
+    <div id="sp-container"></div>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkSP()"><i class="ti ti-check" aria-hidden="true"></i> Comprobar</button>
+      <button class="btn-secondary" onclick="nextSP()"><i class="ti ti-arrow-right" aria-hidden="true"></i> Siguiente</button>
+    </div>
+    <div class="feedback" id="sp-feedback"></div>
+  </div>
+
+  <!-- NUCLEOS -->
+  <div class="tab-panel" id="tab-nucleos">
+    <div class="score-label" id="nuc-score">Ejercicio 1 de 10</div>
+    <div class="progress-bar"><div class="progress-fill" id="nuc-bar" style="width:0%"></div></div>
+    <div id="nuc-container"></div>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkNUC()"><i class="ti ti-check" aria-hidden="true"></i> Comprobar</button>
+      <button class="btn-secondary" onclick="nextNUC()"><i class="ti ti-arrow-right" aria-hidden="true"></i> Siguiente</button>
+    </div>
+    <div class="feedback" id="nuc-feedback"></div>
+  </div>
+
+  <!-- COMPLEMENTOS -->
+  <div class="tab-panel" id="tab-complementos">
+    <div class="score-label" id="comp-score">Ejercicio 1 de 10</div>
+    <div class="progress-bar"><div class="progress-fill" id="comp-bar" style="width:0%"></div></div>
+    <div id="comp-container"></div>
+    <div class="btn-group">
+      <button class="btn-primary" onclick="checkCOMP()"><i class="ti ti-check" aria-hidden="true"></i> Comprobar</button>
+      <button class="btn-secondary" onclick="nextCOMP()"><i class="ti ti-arrow-right" aria-hidden="true"></i> Siguiente</button>
+    </div>
+    <div class="feedback" id="comp-feedback"></div>
+  </div>
+
+  <!-- SEMAFORO -->
+  <div class="tab-panel" id="tab-semaforo">
+    <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;"><i class="ti ti-drag-drop" aria-hidden="true" style="vertical-align:-2px;margin-right:4px;"></i>Arrastra cada concepto a la columna que mejor refleje tu nivel. Los ejercicios también actualizan el semáforo automáticamente.</p>
+    <div class="chips-row" id="chipArea"></div>
+    <div class="semaforo-grid">
+      <div class="semaforo-lane verde" id="lane-verde" ondrop="drop(event,'verde')" ondragover="allowDrop(event)">
+        <div class="semaforo-header verde"><i class="ti ti-circle-check" aria-hidden="true"></i>Lo sé bien</div>
+        <div class="semaforo-sub">Lo entiendo y lo aplico</div>
+        <div id="items-verde"><div class="semaforo-empty" id="empty-verde">Arrastra aquí</div></div>
+      </div>
+      <div class="semaforo-lane amarillo" id="lane-amarillo" ondrop="drop(event,'amarillo')" ondragover="allowDrop(event)">
+        <div class="semaforo-header amarillo"><i class="ti ti-alert-circle" aria-hidden="true"></i>En proceso</div>
+        <div class="semaforo-sub">A veces me confundo</div>
+        <div id="items-amarillo"><div class="semaforo-empty" id="empty-amarillo">Arrastra aquí</div></div>
+      </div>
+      <div class="semaforo-lane rojo" id="lane-rojo" ondrop="drop(event,'rojo')" ondragover="allowDrop(event)">
+        <div class="semaforo-header rojo"><i class="ti ti-x" aria-hidden="true"></i>Me cuesta</div>
+        <div class="semaforo-sub">Necesito repasar</div>
+        <div id="items-rojo"><div class="semaforo-empty" id="empty-rojo">Arrastra aquí</div></div>
+      </div>
+    </div>
+    <div class="semaforo-tip"><i class="ti ti-bulb" aria-hidden="true" style="font-size:16px;flex-shrink:0;"></i><span id="semaforo-tip">Mueve los conceptos según vayas practicando. ¡El semáforo cambiará a medida que mejores!</span></div>
+  </div>
+</div>
+
+<script>
+// ── TABS ──────────────────────────────────────────────
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('tab-'+id).classList.add('active');
+  var idx = ['teoria','sujpred','nucleos','complementos','semaforo'].indexOf(id);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+}
+
+// ── helpers para feedback ─────────────────────────────
+function showFeedback(id, tipo, msg) {
+  var el = document.getElementById(id);
+  el.style.display = 'flex';
+  el.style.background = tipo === 'ok' ? 'var(--green-light)' : 'var(--red-light)';
+  el.style.color = tipo === 'ok' ? 'var(--green-dark)' : 'var(--red-dark)';
+  el.innerHTML = msg;
+}
+function hideFeedback(id) {
+  var el = document.getElementById(id);
+  el.style.display = 'none';
+  el.innerHTML = '';
+}
+
+// ── SUJETO / PREDICADO ────────────────────────────────
+var spData = [
+  { sentence:["Los","perros","ladraron","toda","la","noche"],           suj:[0,1],     pred:[2,3,4,5] },
+  { sentence:["Mi","hermana","pequeña","come","fruta","cada","mañana"], suj:[0,1,2],   pred:[3,4,5,6] },
+  { sentence:["El","tren","rápido","llegó","tarde"],                    suj:[0,1,2],   pred:[3,4] },
+  { sentence:["Unos","pájaros","cantaban","en","el","árbol"],           suj:[0,1],     pred:[2,3,4,5] },
+  { sentence:["La","maestra","explicó","la","lección","con","paciencia"],suj:[0,1],    pred:[2,3,4,5,6] },
+  { sentence:["El","gato","negro","duerme","sobre","el","sofá"],        suj:[0,1,2],   pred:[3,4,5,6] },
+  { sentence:["Mis","amigos","juegan","al","fútbol","los","sábados"],   suj:[0,1],     pred:[2,3,4,5,6] },
+  { sentence:["La","niña","de","los","rizos","llora","en","su","cuarto"],suj:[0,1,2,3,4],pred:[5,6,7,8] },
+  { sentence:["El","director","habló","con","los","padres","ayer"],     suj:[0,1],     pred:[2,3,4,5,6] },
+  { sentence:["Varios","alumnos","llegaron","tarde","al","colegio"],    suj:[0,1],     pred:[2,3,4,5] }
+];
+var spIdx = 0, spSelected = {};
+
+function renderSP() {
+  spSelected = {};
+  var ex = spData[spIdx];
+  document.getElementById('sp-score').textContent = 'Ejercicio ' + (spIdx+1) + ' de ' + spData.length;
+  document.getElementById('sp-bar').style.width = (spIdx / spData.length * 100) + '%';
+  hideFeedback('sp-feedback');
+  var html = '<div class="exercise-card"><p class="exercise-hint">Haz clic en cada palabra y clasifícala con el menú desplegable.</p><div class="exercise-sentence" id="sp-words">';
+  ex.sentence.forEach(function(w, i) {
+    html += '<button class="word-btn" id="spw-' + i + '" onclick="toggleSP(' + i + ')">' + w + '</button>';
+  });
+  html += '</div><div class="select-row" style="margin-top:12px"><label style="font-size:13px;color:var(--text2);">Clasificar como:</label><select class="func-select" id="sp-role"><option value="suj">Sujeto</option><option value="pred">Predicado</option></select></div></div>';
+  document.getElementById('sp-container').innerHTML = html;
+}
+
+function toggleSP(i) {
+  var role = document.getElementById('sp-role').value;
+  if (spSelected[i] === role) { delete spSelected[i]; document.getElementById('spw-'+i).className = 'word-btn'; }
+  else { spSelected[i] = role; document.getElementById('spw-'+i).className = 'word-btn ' + role; }
+}
+
+function checkSP() {
+  var ex = spData[spIdx];
+  var ok = true;
+  ex.sentence.forEach(function(_, i) {
+    var expected = ex.suj.indexOf(i) >= 0 ? 'suj' : 'pred';
+    if (spSelected[i] !== expected) ok = false;
+  });
+  if (ok) {
+    showFeedback('sp-feedback','ok','<i class="ti ti-circle-check" style="font-size:16px;flex-shrink:0;"></i> ¡Correcto! Has separado bien el sujeto y el predicado.');
+    updateSemaforo('Sujeto y predicado','verde');
+  } else {
+    showFeedback('sp-feedback','ko','<i class="ti ti-x" style="font-size:16px;flex-shrink:0;"></i> Revisa: el sujeto es <em>de quién</em> habla la frase; el predicado dice <em>qué hace</em>. Marca todas las palabras.');
+    updateSemaforo('Sujeto y predicado','rojo');
+  }
+}
+function nextSP() { spIdx = (spIdx + 1) % spData.length; renderSP(); }
+
+// ── NÚCLEOS ───────────────────────────────────────────
+var nucData = [
+  { sentence:["Los","niños","felices","corrieron","por","el","parque"],   ns:1, nv:3, suj:[0,1,2], pred:[3,4,5,6] },
+  { sentence:["Mi","gata","blanca","duerme","todo","el","día"],            ns:1, nv:3, suj:[0,1,2], pred:[3,4,5,6] },
+  { sentence:["El","director","del","colegio","habló","con","nosotros"],  ns:1, nv:4, suj:[0,1,2,3], pred:[4,5,6] },
+  { sentence:["Varios","alumnos","estudiaron","la","lección"],            ns:1, nv:2, suj:[0,1], pred:[2,3,4] },
+  { sentence:["La","luna","brillante","iluminó","el","camino"],           ns:1, nv:3, suj:[0,1,2], pred:[3,4,5] },
+  { sentence:["El","perro","grande","ladró","toda","la","noche"],         ns:1, nv:3, suj:[0,1,2], pred:[3,4,5,6] },
+  { sentence:["Mi","abuela","cariñosa","cocina","pasteles","deliciosos"], ns:1, nv:3, suj:[0,1,2], pred:[3,4,5] },
+  { sentence:["Los","jugadores","del","equipo","ganaron","el","partido"], ns:1, nv:4, suj:[0,1,2,3], pred:[4,5,6] },
+  { sentence:["Una","mariposa","amarilla","voló","sobre","las","flores"], ns:1, nv:3, suj:[0,1,2], pred:[3,4,5,6] },
+  { sentence:["El","niño","travieso","rompió","el","jarrón","azul"],      ns:1, nv:3, suj:[0,1,2], pred:[3,4,5,6] }
+];
+var nucIdx = 0, nucSelNS = null, nucSelNV = null, nucMode = 'ns';
+
+function renderNUC() {
+  nucSelNS = null; nucSelNV = null; nucMode = 'ns';
+  var ex = nucData[nucIdx];
+  document.getElementById('nuc-score').textContent = 'Ejercicio ' + (nucIdx+1) + ' de ' + nucData.length;
+  document.getElementById('nuc-bar').style.width = (nucIdx / nucData.length * 100) + '%';
+  hideFeedback('nuc-feedback');
+  var html = '<div class="exercise-card"><p class="exercise-hint">Elige qué quieres marcar y haz clic en la palabra correcta de la oración.</p><div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;"><button class="nuc-mode-btn ns activo" id="btn-ns" onclick="setNucMode(\'ns\')">Marcar NS (núcleo del sujeto)</button><button class="nuc-mode-btn nv" id="btn-nv" onclick="setNucMode(\'nv\')">Marcar NV (núcleo verbal)</button></div><div class="exercise-sentence" id="nuc-words">';
+  ex.sentence.forEach(function(w, i) {
+    var cls = ex.suj.indexOf(i) >= 0 ? 'suj' : 'pred';
+    html += '<button class="word-btn ' + cls + '" id="nucw-' + i + '" onclick="markNUC(' + i + ')">' + w + '</button>';
+  });
+  html += '</div></div>';
+  document.getElementById('nuc-container').innerHTML = html;
+}
+
+function setNucMode(m) {
+  nucMode = m;
+  document.getElementById('btn-ns').className = 'nuc-mode-btn ns' + (m === 'ns' ? ' activo' : '');
+  document.getElementById('btn-nv').className = 'nuc-mode-btn nv' + (m === 'nv' ? ' activo' : '');
+}
+
+function markNUC(i) {
+  var ex = nucData[nucIdx];
+  if (nucMode === 'ns') {
+    if (nucSelNS !== null) document.getElementById('nucw-'+nucSelNS).className = 'word-btn ' + (ex.suj.indexOf(nucSelNS)>=0 ? 'suj' : 'pred');
+    nucSelNS = i; document.getElementById('nucw-'+i).className = 'word-btn ns';
+  } else {
+    if (nucSelNV !== null) document.getElementById('nucw-'+nucSelNV).className = 'word-btn ' + (ex.suj.indexOf(nucSelNV)>=0 ? 'suj' : 'pred');
+    nucSelNV = i; document.getElementById('nucw-'+i).className = 'word-btn nv';
+  }
+}
+
+function checkNUC() {
+  var ex = nucData[nucIdx];
+  if (nucSelNS === null || nucSelNV === null) {
+    showFeedback('nuc-feedback','ko','<i class="ti ti-alert-circle" style="font-size:16px;flex-shrink:0;"></i> Marca primero el NS y el NV antes de comprobar.');
+    return;
+  }
+  var ok = (nucSelNS === ex.ns && nucSelNV === ex.nv);
+  if (ok) {
+    showFeedback('nuc-feedback','ok','<i class="ti ti-circle-check" style="font-size:16px;flex-shrink:0;"></i> ¡Perfecto! Has encontrado correctamente el NS y el NV.');
+    updateSemaforo('Núcleos NS / NV','verde');
+  } else {
+    var msg = 'Revisa: ';
+    if (nucSelNS !== ex.ns) msg += 'El NS es el sustantivo principal del sujeto. ';
+    if (nucSelNV !== ex.nv) msg += 'El NV es el verbo conjugado del predicado.';
+    showFeedback('nuc-feedback','ko','<i class="ti ti-x" style="font-size:16px;flex-shrink:0;"></i> ' + msg);
+    updateSemaforo('Núcleos NS / NV','rojo');
+  }
+}
+function nextNUC() { nucIdx = (nucIdx + 1) % nucData.length; renderNUC(); }
+
+// ── COMPLEMENTOS ─────────────────────────────────────
+var compData = [
+  { sentence:"María regaló un libro a su amigo ayer",
+    parts:[{text:"María",func:null},{text:"regaló",func:'nv'},{text:"un libro",func:'cd'},{text:"a su amigo",func:'ci'},{text:"ayer",func:'cc'}] },
+  { sentence:"Los alumnos estudiaron la lección en casa con interés",
+    parts:[{text:"Los alumnos",func:null},{text:"estudiaron",func:'nv'},{text:"la lección",func:'cd'},{text:"en casa",func:'cc'},{text:"con interés",func:'cc'}] },
+  { sentence:"Mi padre trajo flores a mamá esta mañana",
+    parts:[{text:"Mi padre",func:null},{text:"trajo",func:'nv'},{text:"flores",func:'cd'},{text:"a mamá",func:'ci'},{text:"esta mañana",func:'cc'}] },
+  { sentence:"La profesora explicó el tema a los niños en el aula",
+    parts:[{text:"La profesora",func:null},{text:"explicó",func:'nv'},{text:"el tema",func:'cd'},{text:"a los niños",func:'ci'},{text:"en el aula",func:'cc'}] },
+  { sentence:"El cocinero preparó una tarta para los invitados con mucho amor",
+    parts:[{text:"El cocinero",func:null},{text:"preparó",func:'nv'},{text:"una tarta",func:'cd'},{text:"para los invitados",func:'ci'},{text:"con mucho amor",func:'cc'}] },
+  { sentence:"Ana escribió una carta a su abuela por la tarde",
+    parts:[{text:"Ana",func:null},{text:"escribió",func:'nv'},{text:"una carta",func:'cd'},{text:"a su abuela",func:'ci'},{text:"por la tarde",func:'cc'}] },
+  { sentence:"El niño comió el bocadillo en el patio rápidamente",
+    parts:[{text:"El niño",func:null},{text:"comió",func:'nv'},{text:"el bocadillo",func:'cd'},{text:"en el patio",func:'cc'},{text:"rápidamente",func:'cc'}] },
+  { sentence:"La directora entregó los diplomas a los ganadores ayer",
+    parts:[{text:"La directora",func:null},{text:"entregó",func:'nv'},{text:"los diplomas",func:'cd'},{text:"a los ganadores",func:'ci'},{text:"ayer",func:'cc'}] },
+  { sentence:"Mi hermano mandó un mensaje a su amigo desde el móvil",
+    parts:[{text:"Mi hermano",func:null},{text:"mandó",func:'nv'},{text:"un mensaje",func:'cd'},{text:"a su amigo",func:'ci'},{text:"desde el móvil",func:'cc'}] },
+  { sentence:"Los bomberos apagaron el fuego en el edificio con rapidez",
+    parts:[{text:"Los bomberos",func:null},{text:"apagaron",func:'nv'},{text:"el fuego",func:'cd'},{text:"en el edificio",func:'cc'},{text:"con rapidez",func:'cc'}] }
+];
+var compIdx = 0, compAnswers = {};
+
+function shuffleArray(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function renderCOMP() {
+  compAnswers = {};
+  var ex = compData[compIdx];
+  document.getElementById('comp-score').textContent = 'Ejercicio ' + (compIdx+1) + ' de ' + compData.length;
+  document.getElementById('comp-bar').style.width = (compIdx / compData.length * 100) + '%';
+  hideFeedback('comp-feedback');
+  var opciones = [
+    {val:'nv', label:'NV – Núcleo verbal'},
+    {val:'cd', label:'CD – Complemento directo'},
+    {val:'ci', label:'CI – Complemento indirecto'},
+    {val:'cc', label:'CC – Circunstancial'}
+  ];
+  var html = '<div class="exercise-card"><p class="exercise-hint">Identifica la función de cada grupo subrayado. CD→lo/la · CI→le/les · CC→¿dónde/cuándo/cómo?</p><p class="exercise-sentence">' + ex.sentence + '</p><div style="display:flex;flex-direction:column;gap:7px;margin-top:10px;">';
+  ex.parts.forEach(function(p, i) {
+    if (!p.func) return;
+    var mezcladas = shuffleArray(opciones);
+    var opts = '<option value="">— elegir —</option>';
+    mezcladas.forEach(function(o){ opts += '<option value="' + o.val + '">' + o.label + '</option>'; });
+    html += '<div class="comp-group"><span class="comp-label">' + p.text + '</span><select class="func-select" id="comp-sel-' + i + '" onchange="compAnswers[' + i + ']=this.value">' + opts + '</select></div>';
+  });
+  html += '</div></div>';
+  document.getElementById('comp-container').innerHTML = html;
+}
+
+function checkCOMP() {
+  var ex = compData[compIdx];
+  var ok = true, missing = false;
+  ex.parts.forEach(function(p, i) {
+    if (!p.func) return;
+    if (!compAnswers[i]) { missing = true; return; }
+    if (compAnswers[i] !== p.func) ok = false;
+  });
+  if (missing) {
+    showFeedback('comp-feedback','ko','<i class="ti ti-alert-circle" style="font-size:16px;flex-shrink:0;"></i> Clasifica todos los grupos antes de comprobar.');
+    return;
+  }
+  if (ok) {
+    showFeedback('comp-feedback','ok','<i class="ti ti-circle-check" style="font-size:16px;flex-shrink:0;"></i> ¡Excelente! Has identificado correctamente todos los complementos.');
+    updateSemaforo('Complementos CD/CI/CC','verde');
+  } else {
+    var hints = '';
+    ex.parts.forEach(function(p, i) { if (p.func && compAnswers[i] && compAnswers[i] !== p.func) hints += ' "' + p.text + '": revisa.'; });
+    showFeedback('comp-feedback','ko','<i class="ti ti-x" style="font-size:16px;flex-shrink:0;"></i> Hay algún error.' + hints + ' Recuerda: CD→lo/la; CI→le/les; CC→¿dónde/cuándo/cómo?');
+    updateSemaforo('Complementos CD/CI/CC','rojo');
+  }
+}
+function nextCOMP() { compIdx = (compIdx + 1) % compData.length; renderCOMP(); }
+
+// ── SEMÁFORO ──────────────────────────────────────────
+var conceptsList = ['Sujeto y predicado','Núcleos NS / NV','Complemento directo (CD)','Complemento indirecto (CI)','Complemento circunstancial (CC)','Núcleo del sujeto','Núcleo del predicado'];
+var semaforoState = {};
+conceptsList.forEach(function(c){ semaforoState[c] = 'chips'; });
+
+function renderChips() {
+  var area = document.getElementById('chipArea');
+  var html = '<span style="font-size:12px;color:var(--text2);align-self:center;">Añadir:</span>';
+  conceptsList.forEach(function(c) {
+    if (semaforoState[c] === 'chips')
+      html += '<button class="concept-chip" onclick="addToLane(\'' + c.replace(/'/g,"\\'") + '\',\'amarillo\')">' + c + '</button>';
+  });
+  area.innerHTML = html;
+}
+
+function safeId(c) { return 'item-' + c.replace(/[^a-zA-Z0-9]/g,'_'); }
+
+function addToLane(concept, lane) {
+  var prev = semaforoState[concept];
+  if (prev !== 'chips' && prev !== lane) { var old = document.getElementById(safeId(concept)); if(old) old.remove(); }
+  semaforoState[concept] = lane;
+  placeItem(concept, lane);
+  renderChips();
+  updateTip();
+}
+
+function placeItem(concept, lane) {
+  var id = safeId(concept);
+  var existing = document.getElementById(id); if(existing) existing.remove();
+  ['verde','amarillo','rojo'].forEach(function(l){ var e=document.getElementById('empty-'+l); if(e) e.style.display='none'; });
+  var container = document.getElementById('items-'+lane);
+  var div = document.createElement('div');
+  div.className = 'semaforo-item'; div.id = id; div.draggable = true;
+  div.addEventListener('dragstart', function(e){ e.dataTransfer.setData('concept', concept); });
+  var icons = { verde:'ti-circle-check', amarillo:'ti-alert-circle', rojo:'ti-x' };
+  div.innerHTML = '<i class="ti ' + icons[lane] + '" aria-hidden="true"></i>' + concept;
+  container.appendChild(div);
+}
+
+function allowDrop(e) { e.preventDefault(); }
+function drop(e, lane) { e.preventDefault(); var c = e.dataTransfer.getData('concept'); if(c) addToLane(c, lane); }
+
+function updateSemaforo(concept, lane) {
+  var cur = semaforoState[concept];
+  if (cur === 'chips') { addToLane(concept, lane); }
+  else if (lane === 'verde') {
+    if (cur === 'rojo') addToLane(concept, 'amarillo');
+    else if (cur === 'amarillo') addToLane(concept, 'verde');
+  }
+}
+
+function updateTip() {
+  var rojos = conceptsList.filter(function(c){ return semaforoState[c]==='rojo'; });
+  var verdes = conceptsList.filter(function(c){ return semaforoState[c]==='verde'; });
+  var tip = document.getElementById('semaforo-tip');
+  if (rojos.length > 0) tip.innerHTML = 'Repasa especialmente: <strong>' + rojos.join(', ') + '</strong>. ¡Sigue practicando!';
+  else if (verdes.length >= 4) tip.innerHTML = '¡Muy bien! Dominas la mayoría de conceptos. Sigue practicando para afianzarlos todos.';
+  else tip.innerHTML = 'Mueve los conceptos según vayas practicando. ¡El semáforo cambiará a medida que mejores!';
+}
+
+// Inicializar
+renderChips();
+renderSP();
+renderNUC();
+renderCOMP();
+</script>
+</body>
+</html>
